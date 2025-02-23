@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Toggle Form Example</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .body{
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: large;
+                margin : 0;
+                padding: 0;
+                overflow-x: hidden;
+            }
+            .container {
+                display : flex;
+                flex-direction: row;
+                justify-content: center;
+                align-content: center;
+                background: linear-gradient(to right, rgb(244, 248, 249), rgb(189, 190, 190));;
+
+            }
+            .left_container{
+                flex : 30%;
+                background-color: rgb(230, 230, 230);
+                padding: 20px;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+            }
+            .main_container{
+                flex:70%;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                
+            }
+            .nav_bar {
+                border-radius: 10px;
+                display: flex; /* Flex container */
+                flex-direction: row; /* Row layout */
+                justify-content: space-between; /* Align children horizontally */
+                align-items: center; /* Align children vertically */
+                background: white;
+                padding: 0 20px; /* Internal spacing */
+                border-bottom: 1px solid #ddd;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            
+                /* Add constraints */
+                width: 130%; /* Use content width */
+                max-width: 1200px; /* Set a maximum width */
+                margin: 0 auto; /* Center the navbar horizontally */
+            }
+            .nav_bar h1 {
+                font-size: 24px;
+            }
+            #post_form {
+                display: none;
+                margin-top: 10px;
+                padding: 10px;
+                border: 1px solid #ddd;
+                background-color: #f9f9f9;
+            }
+
+            
+            .toggle-button {
+                font-size: 24px;
+                width: 50px;
+                height: 50px;
+                border: none;
+                border-radius: 50%;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .toggle-button:hover {
+                background-color: #45a049;
+            }
+            .post {
+                margin-top: 20px;
+            }
+            .feed-container {
+                margin-top: 20px;
+            }
+            .feed-post {
+                margin-bottom: 20px;
+                padding: 10px;
+                border: 1px solid #ddd;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+    
+            .feed-post h2 {
+                margin-bottom: 10px;
+                font-size: 20px;
+            }
+    
+            .feed-post img {
+                max-width: 100%;
+                height: auto;
+                margin: 10px 0;
+            }
+    
+            .post-details {
+                margin-top: 20px;
+                padding: 10px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+    
+            .post-details img {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+    </head>
+
+    <body class>
+        <div class="container">
+            <div class="left_container">
+
+            </div>
+            <div class="main_container">
+                <div class="nav_bar">
+                    <h1 class="heading">
+                        POSTS
+                    </h1>
+                    <div class="Button">
+                        <button id="toggleButton" class="toggle-button">
+                            +
+                        </button>
+                    </div>
+                    <div id="post_form" style="display: none;">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="title">
+                                    <label for="{{form.title.id_for_label}}"> title </label>
+                                    {% if form.title.help_text %}
+                                        <small> {{form.title.help_text}} </small>
+                                    {% endif %}
+    
+                                    {% for error in form.title.errors %}
+                                        <span class="errors">{{error}}</span>
+                                    {% endfor %}
+                                </div>
+                                <div class="content">
+                                    <label for="{{form.content.id_for_label}}">
+                                        content
+                                    </label>
+                                    {% if form.content.help_text %}
+                                        <small>
+                                            {{form.content.help_text}}
+                                        </small>
+                                    {% endif %}
+                                    {% for error in form.content.errors %}
+                                        <span class="error">
+                                            {{error}}
+                                        </span>
+                                    {% endfor %}
+                                </div>
+                                <div class="image">
+                                    <label for="{{form.image.id_for_label}}">
+                                        title
+                                    </label>
+                                    {% if form.title.help_text %}
+                                        <small>
+                                            {{form.title.help_text}}
+                                        </small> 
+                                     
+                                    {% endif %}
+                                    {% for error in form.title.errors %}
+                                        <span class="errors">
+                                            {{error}}
+                                        </span>
+                                    {% endfor %}
+                                </div>
+                                <div class="image">
+                                    <label for="{{form.image.id_for_label}}">
+                                        Image
+                                    </label>
+                                    {% if form.image.help_text %}
+                                    <small>
+                                        {{form.image.help_text}}
+                                    </small>
+                                    {% endif %}
+                                    {% for error in form.image.errors %}
+                                        <span class="error">
+                                            {{error}}
+                                        </span>
+                                    {% endfor %}
+                                </div>
+    
+                                <button class="submit_button" type="submit">Post</button>
+                            </form>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    const toggleButton = document.getElementById("toggleButton");
+                                    const postForm = document.getElementById("post_form");
+                                    const form = document.getElementById("postForm");
+                    
+                                    
+                                    toggleButton.addEventListener("click", function () {
+                                        postForm.style.display = postForm.style.display === "block" ? "none" : "block";
+                                    });
+                    
+                                
+                                    form.addEventListener("submit", function () {
+                                        postForm.style.display = "none";
+                                    });
+                                });
+                            </script>
+                        </div>
+
+                    </div>
+                    
+                </div> 
+                <div class="post">
+                    <div class="feed-container">
+                        {% for post in posts %}
+                            <div class="feed-post">
+                                <h2>
+                                    <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+                                </h2>
+                                {% if post.image %}
+                                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                                {% endif %}
+                                <p>{{ post.content|truncatewords:20 }}</p>
+                                <a href="{% url 'post_detail' post.id %}">Read More</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% if post %}
+                        <div class="post-details">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.content }}</p>
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}" alt="Post Image">
+                            {% endif %}
+
+                            <h3>Replies</h3>
+
+                            <div class="reply-list">
+                                <ul>
+                                    {% for reply in replies %}
+                                        <li>
+                                            <p>{{ reply.comment }}</p>
+                                                {% if reply.image %}
+                                                    <img src="{{ reply.image.url }}" alt="Reply Image">
+                                                {% endif %}
+
+                                            {% if reply.child_replies.all %}
+                                                <ul>
+                                                    {% for child in reply.child_replies.all %}
+                                                        <li>
+                                                            <p>{{ child.comment }}</p>
+                                                                {% if child.image %}
+                                                                <img src="{{ child.image.url }}" alt="Child Reply Image">
+                                                                {% endif %}
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ reply_form.as_p }}
+                                    <button type="submit" name="reply_submit">Reply</button>
+                            </form>
+                        </div>
+                    {% endif %}   
+            </div>
+
+        </div>
+        
+        
+
+ 
+    </body>
+</html>

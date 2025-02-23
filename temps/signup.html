@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            height:1040px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding-bottom: 20px;
+            
+        }
+
+        label {
+            font-size: 14px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            padding: 20px;
+            display: flex;
+            color: rgb(127, 21, 100);
+            justify-content: space-between;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            padding-top: 10px;
+            text-align: center;
+            justify-content: center;
+            margin-top: 100px;
+            font-size: 16px;
+            background-color: #c2d8c2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            color: #f44336;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Signup</h2>
+        <form action="{% url 'signup' %}" method="post">
+            {% csrf_token %}
+
+                <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                {{ form.first_name  }}
+            <div class="error">
+                {{ form.first_name.errors }}
+            </div>
+
+            <!-- Render last name field -->
+            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+            {{ form.last_name }}
+            <div class="error">
+                {{ form.last_name.errors }}
+            </div>
+
+            <!-- Render username field -->
+            <label for="{{ form.username.id_for_label }}">Username</label>
+            {{ form.username }}
+            <div class="error">
+                {{ form.username.errors }}
+            </div>
+
+            <!-- Render email field -->
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            <div class="error">
+                {{ form.email.errors }}
+            </div>
+
+            <!-- Render password1 field -->
+            <label for="{{ form.password1.id_for_label }}">Password</label>
+            {{ form.password1 }}
+            <div class="error">
+                {{ form.password1.errors }}
+            </div>
+
+            <!-- Render password2 field -->
+            <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+            {{ form.password2 }}
+            <div class="error">
+                {{ form.password2.errors }}
+            </div>
+
+            <input type="submit" value="Sign Up">
+        </form>
+
+        <div class="message">
+            {% for message in messages %}
+                <div>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

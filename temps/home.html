@@ -1,0 +1,339 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        body, html {
+            overflow-x: hidden;  
+            padding: 0;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            margin : 0;
+            padding : 0;
+            display: block;
+        
+        }
+        .top_nav_bar{
+            height : 80px;
+            display : block;
+            width : 100%;
+            top :0;
+            left : 0;
+            z-index : 4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-image: url("{% static 'roc.jpg' %}");
+            background-size : cover;
+            background-repeat: no-repeat;
+            padding: 0 20px;
+            
+        }
+        
+        .title{
+            display: flex;
+            align-items:center ;
+            flex :75%;
+            font-size: 45px;
+            color: white;
+            height: 100%;
+            margin-top: 0;
+            padding-left: 380px;
+        
+        }
+        .account{
+            color: white(188, 20, 20);
+            display: flex ;
+            flex :30%;
+            gap : 20px;
+            font-size :18px;
+            margin-left: 0;
+            padding-left: 0;
+            cursor :pointer ;
+            transition : transform 0.5s ;
+        
+        
+        }
+        .account :hover{
+            text-decoration: underline;
+            transform: scale(1.3);
+        
+        }
+        .block{
+            display : flex;
+            flex-direction: column;
+        }
+        
+        .container{
+            display : flex;
+            flex-direction: row;
+            width :90%;
+            height : 90vh;
+            
+        }
+        .left_container{
+            flex: 0 0 50%;
+            
+        }
+        .left_container img{
+            display: block;
+            width: 100%;
+            height: 85%;
+            padding-top: 30px;
+            padding-left: 10px;
+        
+        }
+        .right_container{
+           flex: 0 0 50%;
+           padding-left: 40px;
+           display : flex;
+           flex-direction: column;
+           margin: 0;
+           padding-top: 20px;
+           
+        
+        }
+        .welcome{
+          margin-top: 0;   
+          padding-top :20px;    
+          font-family :Arial, Helvetica, sans-serif;
+          font-size : 50px;
+          padding-bottom: 0;
+          margin-bottom: 0;
+          color: rgba(0, 0, 0, 0.728);
+        }
+        .sub_heading{
+            margin: 0;
+            color : grey;
+            padding-top: 0;
+            padding-left : 230px;
+        
+        }
+        .quote{
+            padding-top:25px;
+            font-family: 'Cabral';
+            font-style: italic;
+            font-size: 35px;
+            color: rgba(0, 0, 0, 0.728);
+        
+        }
+        .just{
+            padding-left: 10px;
+        }
+        .rishi{
+            margin-left: 30px;
+            margin-right: 30px;
+            text-align: justify;
+            line-height: 1.8;
+            font-style: italic;
+            font-family: 'Cabral';
+            font-size: 20px;
+            
+        }
+        .head_topic{
+            color: black;
+            padding-left: 10px;
+        }
+        .topics{
+            display:flex;
+            flex-direction: row;
+            padding-right: 10px;
+            padding-left: 10px;
+            justify-content: space-evenly;
+            color: blueviolet;
+            transition: transform 0.3s ease;
+            
+        }
+        .topics:hover{
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body class>
+    {% block content %}
+    <div class="top_nav_bar">
+        <div class="title">
+            Bhuthiki_Vignanam
+        </div>
+        <div class="account">
+            
+            <a class="signin" href="account/signin" >Signin</a>
+            <a class="signup" href="account/signup">Signup</a>
+        </div>
+    </div>
+    <div class="blocks">
+        <div class = "1st_block">
+            <div class="container">
+                    <div class="left_container">
+                    
+                        <img src= "{% static 'R.jpg' %}">
+                    </div>
+                    <div class="right_container">
+                        <h1 class="welcome">
+                            Welcome !!! <br>
+                        </h1>
+                        <h4 class="sub_heading">
+                            Let’s dive deeper......<br>
+                        </h4>
+                        <div>
+                            <p class ="quote">
+                                "For a physicist, the world is not just what it seems. It is the unknown we seek to understand."
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+        </div>
+        <div class="2nd_block">
+                <h1 class="just">
+                    Rishi Kanada :
+                </h1>
+                <p class="rishi">
+                    
+                        Rishi Kanada, also known as Acharya Kanada 🤓, is hailed as the Father of Atomic Theory 🧪. Living around the 6th century BCE, he was a visionary philosopher who proposed that all matter is made up of indivisible particles called Anu (atoms) ⚛️. He believed these atoms were eternal, indestructible, and the fundamental building blocks of the universe 🌌. Kanada founded the Vaisheshika school of philosophy 📚, which emphasized scientific observation and logical reasoning to understand reality. His Vaisheshika Sutras outline groundbreaking concepts, including atomic combinations (similar to molecules), the nature of substances, and even ideas resembling gravity 🌍. Long before Western philosophers like Democritus, Kanada explored atomic theory, making him a pioneer in both science and philosophy 🔬✨. His ideas, blending science and spirituality 🕉️, show how profound Indian intellectual traditions were. To this day, he is celebrated as a brilliant thinker who saw the unseen and inspired future generations 🚀🌟.
+                    
+                </p>
+                <br>
+                <h1>
+                    <span class="head_topic">Topics :</span>
+                </h1>
+                <div class="topics">
+                    <div class="1st_main">
+                        <h2>
+                            Classical physics
+                        </h2>
+                        <ul>
+                            <li>
+                                Kinematics
+                            </li>
+                            <li>
+                                Dynamics
+                            </li>
+                            <li>
+                                Oscillations
+                            </li>
+                            <li>
+                                Gravitations
+                            </li>
+                            <li>
+                                Mechanics of Rigid body
+                            </li>
+                            <li>
+                                Wave and Vibration
+                            </li>
+                            <li>
+                                Fluid mechanics
+                            </li>
+                        </ul>
+    
+                    </div>
+                    <div class="1st_main">
+                        <h2>
+                            Quantum Mechanics
+                        </h2>
+                        <ul>
+                            <li>
+                                Wave-Particle Duality
+                            </li>
+                            <li>
+                                Schrodinger Equation
+                            </li>
+                            <li>
+                                Quantum Superposition
+                            </li>
+                            <li>
+                                Quantum Field Theory
+                            </li>
+                            <li>
+                                Quantum Entanglement
+                            </li>
+                            <li>
+                                Quantum Tunneling
+                            </li>
+                            <li>
+                                Quantum Electrodynamics (QED)
+                            </li>
+                            <li>
+                                Quantum Computing
+                            </li>
+                        </ul>
+    
+                    </div>
+                    <div class="1st_main">
+                        <h2>
+                            Applied Physics
+                        </h2>
+                        <ul>
+                            <li>
+                                Phonons and Thermal Properties
+                            </li>
+                            <li>
+                                Crystallography
+                            </li>
+                            <li>
+                                Electrical Conductivity
+                            </li>
+                            <li>
+                                Band Theory of Solids
+                            </li>
+                            <li>
+                                Magnetic Materials
+                            </li>
+                            <li>
+                                Thin Films and Nano-materials
+                            </li>
+                            <li>
+                                Phase Transitions
+                            </li>
+                            <li>
+                                Superconductivity
+                            </li>
+                        </ul>
+    
+                    </div>
+                    <div class="1st_main">
+                        <h2>
+                            Nuclear Physics
+                        </h2>
+                        <ul>
+                            <li>
+                                Nuclear Structure
+                            </li>
+                            <li>
+                                Nuclear Reactions
+                            </li>
+                            <li>
+                                Nuclear Reactions and Cross Sections
+                            </li>
+                            <li>
+                                Particle Accelerators
+                            </li>
+                            <li>
+                                Radioactivity
+                            </li>
+                            <li>
+                                Nuclear Astrophysics                        </li>
+                            <li>
+                                Applications of Nuclear Physics
+                            </li>
+                            <li>
+                                Cosmic Rays
+                            </li>
+                        </ul>
+    
+                    </div>
+                </div>
+                
+        </div>
+
+    </div>
+    
+    {% endblock %}    
+</body>
+</html>
